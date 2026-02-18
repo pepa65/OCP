@@ -4,7 +4,7 @@ version = 4
 
 [[package]]
 name = "OCP"
-version = "2.10.2"
+version = "2.10.1"
 dependencies = [
  "chess",
  "chrono",
