@@ -12,7 +12,7 @@ use crate::{
 
 pub fn establish_connection() -> SqliteConnection {
 	let fav_db = "favorites.db";
-	let mut conn = SqliteConnection::establish(fav_db).unwrap_or_else(|_| panic!("Error connecting to {}", &fav_db));
+	let mut conn = SqliteConnection::establish(fav_db).unwrap_or_else(|_| panic!("Error connecting to {}", fav_db));
 	let init = concat!(
 		"CREATE TABLE IF NOT EXISTS favs (",
 		"puzzle_id TEXT NOT NULL PRIMARY KEY,",
@@ -30,7 +30,7 @@ pub fn establish_connection() -> SqliteConnection {
 		"COMMIT;"
 	);
 	if let Err(err) = diesel::sql_query(init.to_string()).execute(&mut conn) {
-		panic!("{:?}: can't initialize {}", err, &fav_db);
+		panic!("{:?}: can't initialize {}", err, fav_db);
 	}
 	conn
 }

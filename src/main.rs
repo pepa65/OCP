@@ -16,7 +16,7 @@ use image::RgbaImage;
 use include_dir::{Dir, include_dir};
 use rand::seq::SliceRandom;
 use rfd::AsyncFileDialog;
-use rodio::{Decoder, OutputStream, OutputStreamBuilder, Sink};
+use rodio::{Decoder, DeviceSinkBuilder, MixerDeviceSink, Player};
 use std::{borrow::Cow, collections::HashMap, env, fs, io::Cursor, path::Path, str::FromStr};
 use styles::PieceTheme;
 use tokio::sync::mpsc::{self, Sender};
@@ -134,13 +134,13 @@ pub enum Message {
 
 struct SoundPlayback {
 	#[allow(dead_code)]
-	stream: OutputStream,
+	stream: MixerDeviceSink,
 }
 
 impl SoundPlayback {
 	pub fn init_sound() -> Option<Self> {
 		let mut sound_playback = None;
-		if let Ok(mut stream) = OutputStreamBuilder::open_default_stream() {
+		if let Ok(mut stream) = DeviceSinkBuilder::open_default_sink() {
 			stream.log_on_drop(false);
 			sound_playback = Some(SoundPlayback { stream });
 		}
@@ -149,14 +149,14 @@ impl SoundPlayback {
 	pub fn play_one(&self) {
 		let cursor = Cursor::new(ONE_PIECE);
 		let one_piece = Decoder::new(cursor).unwrap();
-		let sink = Sink::connect_new(self.stream.mixer());
-		sink.append(one_piece);
+		let player = Player::connect_new(self.stream.mixer());
+		player.append(one_piece);
 	}
 	pub fn play_two(&self) {
 		let cursor = Cursor::new(TWO_PIECES);
 		let two_pieces = Decoder::new(cursor).unwrap();
-		let sink = Sink::connect_new(self.stream.mixer());
-		sink.append(two_pieces);
+		let player = Player::connect_new(self.stream.mixer());
+		player.append(two_pieces);
 	}
 }
 

@@ -1,6 +1,6 @@
 [package]
 name = "OCP"
-version = "2.10.33"
+version = "2.11.0"
 edition = "2024"
 authors = ["brianch <brianch@users.noreply.github.com>", "github.com/pepa65"]
 description = "offline-chess-puzzles - GUI to solve puzzles from the lichess puzzle database"
@@ -18,35 +18,35 @@ target-family = "Linux"
 target-arch = "X86_64"
 
 [dependencies]
-rfd = {version = "0.17.1", default-features = false, features = ["gtk3"] }
+rfd = {version = "0.17", default-features = false, features = ["gtk3"] }
 iced = { version = "0.14", default-features = false, features = ["svg", "tokio", "lazy", "advanced", "advanced-shaping"] }
-iced_aw = { version = "0.13", default-features = false, features = ["tabs"] }
+iced_aw = { version = "0.14", default-features = false, features = ["tabs"] }
 #iced_drop = {git = "https://github.com/pml68/iced_drop.git", branch="0.14"}
-iced_drop = { version = "0.2.9", features = ["helpers"] }
-rand = "0.9"
+iced_drop = { version = "0.2", features = ["helpers"] }
+rand = "0.10.2"
 chess = "3.2.0"
-csv = "1.3.1"
-serde = "1.0.217"
-serde_derive = "1.0.217"
-serde_json = "1.0.135"
-tokio = { version = "1.43.0", features = ["process", "io-std", "io-util", "sync"] }
-reqwest = "0.12.12"
-zstd = "0.13.2"
-rodio = { version = "0.21.1", default-features = false, features = ["playback", "lewton"] }
-fluent-bundle = "0"
-intl-memoizer = "0.5.2"
-once_cell = "1.20.2"
-unic-langid = { version = "0.9.5", features = ["macros"] }
-diesel = { version = "2.3.5", features = ["sqlite"] }
-lopdf = "0"
-open = "5.3.2"
-image = { version = "0.25.5", default-features = false, features = ["jpeg"] }
+csv = "1"
+serde = "1.0"
+serde_derive = "1.0"
+serde_json = "1.0"
+tokio = { version = "1", features = ["process", "io-std", "io-util", "sync"] }
+reqwest = "0.13"
+zstd = "0.13"
+rodio = { version = "0.22", default-features = false, features = ["playback", "lewton"] }
+fluent-bundle = "0.16"
+intl-memoizer = "0.5"
+once_cell = "1"
+unic-langid = { version = "0.9", features = ["macros"] }
+diesel = { version = "2.3.12", features = ["sqlite"] }
+lopdf = "0.44"
+open = "5"
+image = { version = "0.25", default-features = false, features = ["jpeg"] }
 include_dir = "0.7.4"
 dirs-next = "2.0.0"
-chrono = "0.4.42"
+chrono = "0.4"
 
 [target.'cfg(windows)'.dependencies]
-libsqlite3-sys = { version = "0.35.0", features = ["bundled"] }
+libsqlite3-sys = { version = "0.38", features = ["bundled"] }
 
 [profile.release]
 opt-level = "z"

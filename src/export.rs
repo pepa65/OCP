@@ -354,15 +354,15 @@ pub fn to_pgn(puzzles: &[config::Puzzle], lang: &lang::Language, path: String) {
 		// Start with a board from the FEN
 		let mut board = Board::from_str(&puzzle.fen).unwrap();
 		// Add PGN headers
-		pgn_content.push_str(&format!("[Event \"Chess Puzzle\"]\n"));
+		pgn_content.push_str("[Event \"Chess Puzzle\"]\n");
 		pgn_content.push_str(&format!("[Site \"https://lichess.org/training/{}\"]\n", puzzle.puzzle_id));
 		pgn_content.push_str(&format!("[Date \"{}\"]\n", chrono::Local::now().format("%Y-%m-%d")));
 		pgn_content.push_str(&format!("[White \"{}\"]\n", if board.side_to_move() == Color::White { "Player" } else { "Opponent" }));
 		pgn_content.push_str(&format!("[Black \"{}\"]\n", if board.side_to_move() == Color::Black { "Player" } else { "Opponent" }));
-		pgn_content.push_str(&format!("[Result \"*\"]\n"));
+		pgn_content.push_str("[Result \"*\"]\n");
 		pgn_content.push_str(&format!("[GameID \"{}\"]\n", puzzle.game_url));
 		pgn_content.push_str(&format!("[FEN \"{}\"]\n", puzzle.fen));
-		pgn_content.push_str(&format!("[SetUp \"1\"]\n"));
+		pgn_content.push_str("[SetUp \"1\"]\n");
 		if !puzzle.opening.is_empty() {
 			pgn_content.push_str(&format!("[Opening \"{}\"]\n", puzzle.opening));
 		}
@@ -398,7 +398,7 @@ pub fn to_pgn(puzzles: &[config::Puzzle], lang: &lang::Language, path: String) {
 			if is_white_to_move {
 				pgn_content.push_str(&format!(" {}. ", move_number));
 			} else {
-				pgn_content.push_str(" ");
+				pgn_content.push(' ');
 			}
 			let san_move = config::coord_to_san(&board, String::from(*chess_move), lang).unwrap();
 			pgn_content.push_str(&san_move);
