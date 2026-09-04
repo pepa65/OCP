@@ -1,6 +1,6 @@
 [package]
 name = "OCP"
-version = "2.11.2"
+version = "2.11.4"
 edition = "2024"
 authors = ["brianch <brianch@users.noreply.github.com>", "github.com/pepa65"]
 description = "offline-chess-puzzles - GUI to solve puzzles from the lichess puzzle database"
@@ -23,15 +23,15 @@ iced = { version = "0.14", default-features = false, features = ["svg", "tokio",
 iced_aw = { version = "0.14", default-features = false, features = ["tabs"] }
 #iced_drop = {git = "https://github.com/pml68/iced_drop.git", branch="0.14"}
 iced_drop = { version = "0.2", features = ["helpers"] }
-rand = "0.10.2"
-chess = "3.2.0"
+rand = "0.10"
+chess = { package = "chess_", version = "3" }
 csv = "1"
 serde = "1.0"
 serde_derive = "1.0"
 serde_json = "1.0"
 tokio = { version = "1.53", features = ["process", "io-std", "io-util", "sync"] }
 reqwest = "0.13"
-zstd = "0.13"
+zstd = "0.14"
 rodio = { version = "0.22", default-features = false, features = ["playback", "lewton"] }
 fluent-bundle = "0.16"
 intl-memoizer = "0.5"
