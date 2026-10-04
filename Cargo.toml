@@ -2,6 +2,7 @@
 name = "OCP"
 version = "2.11.7"
 edition = "2024"
+rust_version = "1.90.0"
 authors = ["brianch <brianch@users.noreply.github.com>", "github.com/pepa65"]
 description = "offline-chess-puzzles - GUI to solve puzzles from the lichess puzzle database"
 repository = "https://github.com/pepa65/OCP"
